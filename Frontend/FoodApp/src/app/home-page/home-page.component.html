@@ -1,0 +1,116 @@
+<!-- <mat-toolbar color="primary" class="navbar">
+  <img src="assets/gif/logo.png" alt="Feedo Logo" class="logo" />
+  <span class="spacer"></span>
+  <a mat-button (click)="navigateToAbout()">About Us</a>
+  <a mat-button (click)="navigateToContact()">Contact</a>
+  <a mat-button (click)="navigateToWork()">How It Works</a>
+  <a mat-button routerLink="">Our Impact</a>
+</mat-toolbar>
+
+<div class="hero-section">
+  <div class="quote">
+    <h1><span>“No one has ever become poor</span> <span class="highlight"> by giving”</span></h1>
+    <p>- Anne Frank</p>
+    <p>Join our mission to end hunger and reduce food waste. Together, we can make every meal count.</p>
+  </div>
+</div>
+
+<div class="card-section">
+  <mat-card class="role-card" *ngFor="let role of roles">
+    <mat-icon [ngClass]="role.iconColor">{{ role.icon }}</mat-icon>
+    <h3>{{ role.title }}</h3>
+    <p>{{ role.description }}</p>
+    <a mat-button color="accent" (click)="navigateTo(role.route)">Get Started →</a>
+  </mat-card>
+</div>
+
+
+<div class="stats">
+  <div class="stat-item">
+    <h2>10,000+</h2>
+    <p>Meals Donated</p>
+  </div>
+  <div class="stat-item">
+    <h2>500+</h2>
+    <p>Active Volunteers</p>
+  </div>
+  <div class="stat-item">
+    <h2>50+</h2>
+    <p>Partner NGOs</p>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-left">
+    <img src="assets/gif/logo.png" alt="Feedo logo" />
+    <p>Connecting hearts and meals. Join us in fighting hunger and reducing food waste by bringing together donors, volunteers, NGOs, and communities.</p>
+    <p><mat-icon>email</mat-icon> hello@feedo.org &nbsp; <mat-icon>phone</mat-icon> +91 98765 43210</p>
+  </div>
+  <div class="footer-right">
+    <h3>Quick Links</h3>
+    <a href="#">About Us</a>
+    <a href="#">How It Works</a>
+    <a href="#">Our Impact</a>
+    <a href="#">Contact</a>
+  </div>
+</footer> -->
+
+<mat-toolbar color="primary" class="navbar">
+  <img src="assets/gif/logo.png" alt="Feedo Logo" class="logo" />
+  <span class="spacer"></span>
+  <a mat-button (click)="navigateToAbout()">About Us</a>
+  <a mat-button (click)="navigateToContact()">Contact</a>
+  <a mat-button (click)="navigateToWork()">How It Works</a>
+</mat-toolbar>
+
+<div class="hero-section">
+  <div class="quote">
+    <h1><span>“No one has ever become poor</span> <span class="highlight"> by giving”</span></h1>
+    <p>- Anne Frank</p>
+    <p>Join our mission to end hunger and reduce food waste. Together, we can make every meal count.</p>
+  </div>
+</div>
+
+<div class="card-section">
+  <div
+    class="role-card"
+    *ngFor="let role of roles; let i = index"
+    [ngClass]="[role.iconColor, i === activeIndex ? 'active' : '']"
+  >
+    <div class="step-icon">{{ role.icon }}</div>
+    <h3>{{ role.title }}</h3>
+    <p>{{ role.description }}</p>
+    <a mat-button color="accent" class= "col"(click)="navigateTo(role.route)">Get Started →</a>
+  </div>
+</div>
+
+<div class="stats">
+  <div class="stat-item">
+    <h2>10,000+</h2>
+    <p>Meals Donated</p>
+  </div>
+  <div class="stat-item">
+    <h2>500+</h2>
+    <p>Active Volunteers</p>
+  </div>
+  <div class="stat-item">
+    <h2>50+</h2>
+    <p>Partner NGOs</p>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-left">
+    <img src="assets/gif/logo.png" alt="Feedo logo"class="logo" />
+    <p>
+      Connecting hearts and meals. Join us in fighting hunger and reducing food waste by bringing together donors, volunteers, NGOs, and communities.
+    </p>
+    <p><mat-icon>email</mat-icon> hello@feedo.org &nbsp; <mat-icon>phone</mat-icon> +91 98765 43210</p>
+  </div>
+  <div class="footer-right">
+    <h3>Quick Links</h3>
+    <a (click)="navigateToAbout()">About Us</a>
+    <a (click)="navigateToWork()">How It Works</a>
+    <a (click)="navigateToContact()">Contact</a>
+  </div>
+</footer>

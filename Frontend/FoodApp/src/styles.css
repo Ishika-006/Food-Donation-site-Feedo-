@@ -1,0 +1,75 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* You can add global styles to this file, and also import other style files */
+
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 18px;
+  background: linear-gradient(-45deg, #b39ddb, #f8bbd0, #ce93d8, #90caf9);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+}
+
+/* ✅ Move @keyframes OUTSIDE any selector */
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Leaflet container fix */
+.leaflet-container {
+  height: 100%;
+  width: 100%;
+}
+
+.leaflet-control-attribution {
+  font-size: 10px;
+}
+
+/* Fix for missing marker icons */
+.leaflet-container .leaflet-marker-icon,
+.leaflet-container .leaflet-marker-shadow {
+  margin-left: 0;
+  margin-top: 0;
+}
+
+/* Responsive media queries */
+
+/* Mobile (max-width: 600px) */
+@media (max-width: 600px) {
+  body {
+    font-size: 14px;
+    background: linear-gradient(-45deg, #f48fb1, #ce93d8, #ba68c8, #90caf9);
+  }
+  .leaflet-control-attribution {
+    font-size: 8px;
+  }
+}
+
+/* Tablets (601px - 1024px) */
+@media (min-width: 601px) and (max-width: 1024px) {
+  body {
+    font-size: 16px;
+    background: linear-gradient(-45deg, #ce93d8, #ba68c8, #9575cd, #7986cb);
+  }
+  .leaflet-control-attribution {
+    font-size: 9px;
+  }
+}
+
+/* Laptops and desktops (1025px and up) */
+@media (min-width: 1025px) {
+  body {
+    font-size: 18px;
+    background: linear-gradient(-45deg, #b39ddb, #f8bbd0, #ce93d8, #90caf9);
+  }
+}

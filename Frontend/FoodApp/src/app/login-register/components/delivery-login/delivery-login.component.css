@@ -1,0 +1,136 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Poppins', sans-serif;
+  overflow: hidden;
+}
+
+.login-container {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(-45deg, #b39ddb, #f8bbd0, #ce93d8, #90caf9);
+  background-size: 400% 400%;
+  animation: gradientBG 20s ease infinite;
+}
+
+.login-overlay::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.login-form {
+  position: relative;
+  z-index: 2;
+  background-color: rgba(255, 255, 255, 0.15);
+  padding: 2rem;
+  border-radius: 16px;
+  backdrop-filter: blur(14px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  max-width: 400px;
+  width: 100%;
+  color: #ffffff;
+}
+
+.login-title {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  color: #fff;
+}
+
+.mat-form-field {
+  margin-bottom: 1rem;
+}
+
+input, select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  transition: background 0.3s ease;
+}
+
+input:focus, select:focus {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+input::placeholder, select {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Button Styling */
+.login-btn {
+  width: 100%;
+  padding: 0.8rem;
+  background: #ba68c8;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  margin-top: 0.5rem; /* Adds spacing between stacked buttons */
+}
+
+.login-btn:hover {
+  background: #ab47bc;
+}
+
+/* Footer buttons layout and spacing */
+.login-footer {
+  display: flex;
+  flex-direction: column; /* Stack buttons vertically */
+  gap: 0.5rem; /* Adds vertical spacing between buttons */
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.link-btn {
+  background: transparent;
+  border: none;
+  color: #e1bee7;
+  cursor: pointer;
+  font-size: 0.9rem;
+  text-decoration: underline;
+  margin-left: 0.5rem;
+}
+
+.link-btn:hover {
+  color: #ce93d8;
+}
+
+.error {
+  color: #ff8a80;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}

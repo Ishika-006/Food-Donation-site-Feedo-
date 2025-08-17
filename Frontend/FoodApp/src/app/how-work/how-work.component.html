@@ -1,0 +1,77 @@
+<!-- Navbar -->
+<mat-toolbar class="navbar">
+  <img src="assets/gif/logo.png" alt="Feedo Logo" class="logo" />
+  <div class="nav-links">
+    <a mat-button (click)="navigateToHome()">Home</a>
+    <a mat-button (click)="navigateToAbout()">About Us</a>
+    <a mat-button (click)="navigateToContact()">Contact Us</a>
+  </div>
+</mat-toolbar>
+<div class="how-it-works">
+
+  <!-- Section: Title -->
+  <h1>How It Works</h1>
+  <p>
+    From donation to delivery - discover how technology and compassion work together
+    to transform food waste into community nourishment
+  </p>
+
+  <!-- Section: Steps -->
+  <h2>Our Complete Process</h2>
+  <p>Click on any step to explore the details and see how we make food donation seamless and impactful</p>
+
+  <div class="steps">
+    <div *ngFor="let step of steps; let i = index"
+         class="step"
+         [ngClass]="{'highlight': currentStepIndex === i}">
+      <h3>Step {{ i + 1 }}</h3>
+      <h4>{{ step.title }}</h4>
+      <p>{{ step.description }}</p>
+    </div>
+  </div>
+
+  <!-- Section: Technology That Powers Impact -->
+  <h2>Technology That Powers Impact</h2>
+  <p>Cutting-edge AI and real-time systems ensure safe, efficient food distribution</p>
+
+  <div class="tech-section">
+    <div class="tech-card" *ngFor="let tech of technologies">
+      <h4>{{ tech.title }}</h4>
+      <p>{{ tech.description }}</p>
+    </div>
+  </div>
+
+  <!-- Section: CTA -->
+  <div class="cta">
+    <h2>Ready to Make a Difference?</h2>
+    <p>
+      Join thousands of donors, NGOs, and delivery partners who are helping communities daily through safe,
+      efficient food distribution
+    </p>
+    <button mat-raised-button color="primary" (click)="navigateToHome()">Start Donating Today</button>
+    <button mat-stroked-button color="accent" (click)="navigateToAbout()">Learn More About Us</button>
+  </div>
+
+</div>
+
+
+<!-- Footer -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <img src="assets/gif/logo.png" class="logo" />
+      <p>Making food donation easier and more impactful. Help fight food waste while feeding those in need.</p>
+    </div>
+    <div>
+      <h3>Quick Links</h3>
+      <p (click)="navigateToHome()">Home<br>About Us<br>Contact<br>Feedback</p>
+    </div>
+    <div>
+      <h3>Support</h3>
+      <p>Help Center<br>+1 (234) 567-8900<br>Mon–Fri 9AM–6PM</p>
+    </div>
+  </div>
+  <p class="copy">© 2025 FoodShare. Made with ❤️ for a better world.</p>
+</footer>
+
+

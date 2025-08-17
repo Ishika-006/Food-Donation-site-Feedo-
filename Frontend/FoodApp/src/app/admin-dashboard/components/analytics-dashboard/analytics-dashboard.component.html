@@ -1,0 +1,33 @@
+<div class="chart-container">
+  <div class="chart-card" *ngIf="monthlyDonationData">
+    <h3>Monthly Donations</h3>
+    <canvas baseChart
+      [data]="monthlyDonationData"
+      [type]="'bar'">
+    </canvas>
+  </div>
+
+  <div class="chart-card" *ngIf="donationStatusData">
+    <h3>Donation Status Distribution</h3>
+    <canvas baseChart
+      [data]="donationStatusData"
+      [type]="'pie'">
+    </canvas>
+  </div>
+
+  <div class="chart-card" *ngIf="ngoDistributionData">
+    <h3>NGO Distribution</h3>
+    <canvas baseChart
+      [data]="ngoDistributionData"
+      [type]="'doughnut'">
+    </canvas>
+  </div>
+
+  <div class="chart-card" *ngIf="topDonorsData">
+    <h3>Top Donors (This Month)</h3>
+    <canvas baseChart
+      [data]="topDonorsData"
+      [type]="'bar'">
+    </canvas>
+  </div>
+</div>

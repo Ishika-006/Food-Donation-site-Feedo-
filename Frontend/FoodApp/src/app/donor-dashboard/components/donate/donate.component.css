@@ -1,0 +1,180 @@
+/* Animated Gradient Background */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Full-screen overlay with moving background */
+body, .overlay {
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  /* background: linear-gradient(135deg, #d7d1f2, #f7d0e7, #c3f2e9); */
+  background-size: 600% 600%;
+  animation: gradientShift 20s ease infinite;
+  font-family: 'Segoe UI', sans-serif;
+
+}
+
+/* Page Header */
+.page-header {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.page-header h1 {
+  color: #5c4d91;
+  font-size: 2rem;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+/* Card styling */
+.donation-card {
+  width: 95%;
+  max-width: 480px;
+  padding: 18px 16px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  animation: fadeInUp 0.5s ease-in-out;
+  margin-top: 10px;
+  flex-shrink: 0;
+}
+
+/* Form container */
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form-title {
+  text-align: center;
+  font-weight: 600;
+  color: #5c4d91;
+  margin-bottom: 5px;
+  font-size: 1.2rem;
+}
+
+/* Compact Material form fields */
+mat-form-field {
+  width: 100%;
+  margin: 0;
+}
+
+/* Shrink textarea */
+textarea[matInput] {
+  min-height: 40px !important;
+  max-height: 60px;
+  resize: none;
+}
+
+/* Button styling */
+button[type="submit"] {
+  background-color: #8e72c7;
+  color: white;
+  font-weight: 500;
+  font-size: 0.95rem;
+  padding: 8px 14px;
+  transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+  background-color: #7659b5;
+}
+
+/* Animation for form appearance */
+@keyframes fadeInUp {
+  0% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+/* Responsive tweaks for small screens (height-wise) */
+@media (max-height: 700px) {
+  .page-header h1 {
+    font-size: 1.6rem;
+    margin-bottom: 5px;
+  }
+
+  .donation-card {
+    padding: 14px 12px;
+    margin-top: 5px;
+  }
+
+  .form-title {
+    font-size: 1rem;
+    margin-bottom: 4px;
+  }
+
+  button[type="submit"] {
+    font-size: 0.85rem;
+    padding: 6px 12px;
+  }
+
+  textarea[matInput] {
+    max-height: 50px;
+  }
+}
+/* File input container */
+.form-group.image-upload {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 10px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Label styling */
+.form-group.image-upload label {
+  font-weight: 500;
+  color: #5c4d91;
+  font-size: 0.95rem;
+}
+
+/* File input styling */
+.form-group.image-upload input[type="file"] {
+  padding: 8px 12px;
+  background-color: #f3f0fb;
+  border: 1px solid #c8bfe7;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: border-color 0.3s, background-color 0.3s;
+}
+
+/* Hover & focus effects */
+.form-group.image-upload input[type="file"]:hover,
+.form-group.image-upload input[type="file"]:focus {
+  border-color: #8e72c7;
+  background-color: #ede7f6;
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+  .form-group.image-upload input[type="file"] {
+    font-size: 0.85rem;
+    padding: 6px 10px;
+  }
+
+  .form-group.image-upload label {
+    font-size: 0.9rem;
+  }
+}

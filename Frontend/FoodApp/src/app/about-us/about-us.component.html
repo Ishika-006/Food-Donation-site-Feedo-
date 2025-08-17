@@ -1,0 +1,87 @@
+<!-- Navbar -->
+<mat-toolbar class="navbar">
+  <img src="assets/gif/logo.png" alt="Feedo Logo" class="logo" />
+  <div class="nav-links">
+    <a mat-button (click)="navigateToHome()">Home</a>
+    <a mat-button (click)="navigateToContact()">Contact</a>
+    <a mat-button (click)="navigateToWork()">How It Works</a>
+  </div>
+</mat-toolbar>
+
+<!-- About Section -->
+<section class="gradient-bg section">
+  <h1 class="section-title">About Us</h1>
+  <p class="section-subtitle">
+    Bridging the gap between food waste and hunger through technology and compassion
+  </p>
+</section>
+
+<!-- Mission Section -->
+<section class="section">
+  <div class="mission-container">
+    <div class="mission-text">
+      <h2>Our Mission</h2>
+      <p>
+        We believe that no food should go to waste while people go hungry.
+        Our platform connects generous donors with NGOs and communities in need...
+      </p>
+      <p>
+        Using advanced ML technology, we ensure food quality and safety while creating an efficient delivery network...
+      </p>
+    </div>
+    <div class="mission-card animate">
+      <div class="mission-card-icon">🤝</div>
+      <h3>Connecting Hearts & Meals</h3>
+      <p>Every donation creates a ripple of positive impact in our community.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Steps Section -->
+<section class="section">
+  <h2 class="section-title">How Our Platform Works</h2>
+  <p class="section-subtitle">
+    A seamless journey from donation to delivery, powered by AI and compassion
+  </p>
+  <div class="steps-container">
+    <div class="step-card animate">
+      <div class="step-icon">🍽️</div>
+      <h4>Donor Contributes</h4>
+      <p>Generous donors share surplus fresh food through our platform</p>
+    </div>
+    <div class="step-card animate">
+      <div class="step-icon">🤖</div>
+      <h4>AI Quality Check</h4>
+      <p>Our ML model verifies food freshness and quality for safe consumption</p>
+    </div>
+    <div class="step-card animate">
+      <div class="step-icon">🚚</div>
+      <h4>Delivery Coordination</h4>
+      <p>Trained delivery partners accept and transport food safely</p>
+    </div>
+    <div class="step-card animate">
+      <div class="step-icon">🏢</div>
+      <h4>NGO Receives</h4>
+      <p>NGOs receive fresh, quality food to serve their communities</p>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <img src="assets/gif/logo.png" class="logo" />
+      <p>Making food donation easier and more impactful. Help fight food waste while feeding those in need.</p>
+    </div>
+    <div>
+      <h3>Quick Links</h3>
+      <p (click)="navigateToHome()">Home<br>About Us<br>Contact<br>Feedback</p>
+    </div>
+    <div>
+      <h3>Support</h3>
+      <p>Help Center<br>+1 (234) 567-8900<br>Mon–Fri 9AM–6PM</p>
+    </div>
+  </div>
+  <p class="copy">© 2025 FoodShare. Made with ❤️ for a better world.</p>
+</footer>

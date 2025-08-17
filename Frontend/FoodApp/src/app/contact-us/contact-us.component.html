@@ -1,0 +1,98 @@
+<!-- Navbar -->
+<mat-toolbar class="navbar">
+  <img src="assets/gif/logo.png" alt="Feedo Logo" class="logo" />
+  <div class="nav-links">
+    <a mat-button (click)="navigateToHome()">Home</a>
+    <a mat-button (click)="navigateToAbout()">About Us</a>
+    <a mat-button (click)="navigateToWork()">How It Works</a>
+  </div>
+</mat-toolbar>
+
+<div class="contact-container mat-elevation-z2">
+  <h1 class="title">Contact Us</h1>
+  <p class="subtitle">हमसे जुड़ें और food donation की journey में हिस्सा लें</p>
+
+  <div class="content">
+    <!-- Message Form -->
+    <form class="message-form" [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+      <h2>Send us a Message</h2>
+
+      <mat-form-field appearance="fill">
+        <mat-label>आप कौन हैं?</mat-label>
+        <mat-select formControlName="role">
+          <mat-option *ngFor="let role of roles" [value]="role">{{ role }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name" placeholder="Your full name" required />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" type="email" placeholder="your@email.com" required />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Phone</mat-label>
+        <input matInput formControlName="phone" placeholder="+91 XXXXX XXXXX" required />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>What’s this about?</mat-label>
+        <input matInput formControlName="subject" placeholder="Enter the subject" />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Message</mat-label>
+        <textarea matInput formControlName="message" rows="4" placeholder="Tell us more about your inquiry..."></textarea>
+      </mat-form-field>
+
+      <button mat-raised-button class="btn" type="submit">Send Message</button>
+    </form>
+
+    <!-- Contact Info -->
+    <div class="contact-info">
+      <h2>Get in Touch</h2>
+      <p><strong>Address:</strong><br>123 Food Bridge Street<br>Delhi, India 110001</p>
+      <p><strong>Phone:</strong><br>+91 98765 43210<br>+91 87654 32109</p>
+      <p><strong>Working Hours:</strong><br>Mon - Fri: 9 AM - 6 PM<br>Sat: 10 AM - 4 PM<br>Sun: Closed</p>
+
+      <div class="emergency">
+        <h3>Emergency Food Donation</h3>
+        <p><strong>+91 98765 00000</strong><br>Available 24 hours</p>
+      </div>
+
+      <div class="quick-links">
+        <h3>Quick Links</h3>
+        <div class="chip-buttons">
+          <button type="button" class="chip">Become a Donor</button>
+          <button type="button" class="chip">Partner NGO</button>
+          <button type="button" class="chip">Delivery Partner</button>
+          <button type="button" class="chip">Volunteer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <img src="assets/gif/logo.png" class="logo" />
+      <p>Making food donation easier and more impactful. Help fight food waste while feeding those in need.</p>
+    </div>
+    <div>
+      <h3>Quick Links</h3>
+      <p (click)="navigateToHome()">Home<br>About Us<br>Contact<br>Feedback</p>
+    </div>
+    <div>
+      <h3>Support</h3>
+      <p>Help Center<br>+1 (234) 567-8900<br>Mon–Fri 9AM–6PM</p>
+    </div>
+  </div>
+  <p class="copy">© 2025 FoodShare. Made with ❤️ for a better world.</p>
+</footer>
+

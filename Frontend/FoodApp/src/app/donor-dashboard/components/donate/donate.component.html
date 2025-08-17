@@ -1,0 +1,86 @@
+<!-- donate.component.html -->
+<div class="overlay">
+  <div class="page-header">
+    <h1>Let's Donate</h1>
+  </div>
+
+  <mat-card class="donation-card">
+    <form [formGroup]="donationForm" (ngSubmit)="submitDonation()" class="form-container">
+      <h2 class="form-title">Donate Food</h2>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Donor Name</mat-label>
+        <input matInput formControlName="name" required>
+      </mat-form-field>
+      
+
+      <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" required>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Phone Number</mat-label>
+        <input matInput formControlName="phoneno" required>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Food Item</mat-label>
+        <input matInput formControlName="food" required>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Type</mat-label>
+        <input matInput formControlName="type">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Category</mat-label>
+        <input matInput formControlName="category">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Quantity</mat-label>
+        <input matInput formControlName="quantity">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Address</mat-label>
+        <textarea matInput formControlName="address"></textarea>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Location</mat-label>
+        <input matInput formControlName="location">
+      </mat-form-field>
+
+      <div class="form-group image-upload">
+        <label for="image">Upload Food Image</label>
+        <input type="file" id="image" (change)="onImageSelected($event)" accept="image/*" required />
+      
+        <div *ngIf="loadingPrediction" style="color: blue;">Checking freshness...</div>
+        <div *ngIf="predictionResult" style="margin-top: 5px;">
+          <strong>Category:</strong> {{ predictionResult | uppercase }}
+          <div *ngIf="predictionResult.toLowerCase() !== 'fresh'" style="color: red;">
+            ❌ Your food is not fresh. You cannot donate this item.
+          </div>
+          <div *ngIf="predictionResult.toLowerCase() === 'fresh'" style="color: green;">
+            ✅ Your food is fresh and can be donated.
+          </div>
+        </div>
+        
+      </div>
+      
+      
+
+      <button 
+  mat-raised-button 
+  color="primary" 
+  type="submit" 
+  [disabled]="predictionResult?.toLowerCase() !== 'fresh'">
+  Submit Donation
+</button>
+
+    </form>
+  </mat-card>
+</div>

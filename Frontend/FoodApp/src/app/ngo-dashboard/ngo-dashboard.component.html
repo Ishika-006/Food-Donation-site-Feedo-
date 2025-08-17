@@ -1,0 +1,80 @@
+<!-- Top Navbar -->
+<mat-toolbar class="toolbar">
+  <img src="assets/gif/logo.png"  class="logo" />
+  <span class="spacer"></span>
+  <button mat-button (click)="handleTrackClick()">Track Status</button>
+  <button mat-button (click) = "navigateToFeedback()">Feedback</button>
+  <button mat-raised-button color="accent"(click)="logout()">Logout</button>
+</mat-toolbar>
+
+
+<!-- main-section -->
+<main>
+<div class="stats-container">
+  <div class="stat-card">
+    <p>Pending</p>
+    <h2>{{ pendingCount }}</h2>
+  </div>
+  <div class="stat-card accepted">
+    <p>Accepted</p>
+    <h2>{{ acceptedCount }}</h2>
+  </div>
+  <div class="stat-card">
+    <p>Total Today</p>
+    <h2>{{ totalToday }}</h2>
+  </div>
+  <div class="stat-card served">
+    <p>People Served</p>
+    <h2>{{ peopleServed }}</h2>
+  </div>
+</div>
+
+<div class="donations-container">
+  <h3>❤️ Incoming Donations</h3>
+  <div *ngFor="let donation of donations" class="donation-card">
+    <div class="donation-header">
+      <strong>{{ donation.name }}</strong>
+      <span class="status" [ngClass]="donation.status.toLowerCase()">{{ donation.status }}</span>
+    </div>
+    <div class="donation-info">
+      <p><b>📞</b> {{ donation.phoneno }}</p>
+      <p><b>📦 Food Type:</b> {{ donation.type }}</p>
+      <p><b>🍽️ Quantity:</b> {{ donation.quantity }}</p>
+      <p><b>📍 Location:</b> {{ donation.location }}</p>
+      <p><b>🕒 Donated:</b> {{ timeAgo(donation.date) }}</p>
+      <p><b>📝 Description:</b> {{ donation.food }}</p>
+      <p class="expiry">Expires in 4 hours</p>
+    </div>
+    <div class="action-buttons" *ngIf="donation.status === 'PENDING'">
+      <button class="accept" (click)="updateDonationStatus(donation.fid, 'ACCEPTED')">✓ Accept</button>
+      <button class="reject" (click)="updateDonationStatus(donation.fid, 'REJECTED')">✗ Reject</button>
+    </div>
+  </div>
+</div>
+</main>
+
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <img src="assets/gif/logo.png"  class="logo" />
+        <p>Making food donation easier and more impactful. Help fight food waste while feeding those in need.</p>
+      </div>
+      <div>
+        <h3>Quick Links</h3>
+        <a (click)="navigateToHome()">Home</a><br>
+          <a (click)="navigateToAbout()">About Us</a><br>
+          <a (click)="navigateToWork()">How It Works</a><br>
+          <a (click)="navigateToContact()">Contact</a><br>
+      </div>
+      <div>
+        <h3>Support</h3>
+        <p>Help Center<br>+1 (234) 567-8900<br>Mon–Fri 9AM–6PM</p>
+      </div>
+    </div>
+    <p class="copy">© 2025 FoodShare. Made with ❤️ for a better world.</p>
+  </footer>
+
+
+

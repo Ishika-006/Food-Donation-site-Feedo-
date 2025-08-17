@@ -1,0 +1,79 @@
+<!-- Top Navbar -->
+<mat-toolbar class="toolbar">
+  <img src="assets/gif/logo.png" class="logo" />
+  <span class="spacer"></span>
+  <button mat-button (click) = "navigateToFeedback()">Feedback</button>
+  <button mat-raised-button color="accent" (click)="logout()">Logout</button>
+</mat-toolbar>
+
+<div class="dashboard-summary">
+  <mat-card class="summary-card">
+    <h3>Total Deliveries</h3>
+    <p>{{ totalDeliveries }}</p>
+  </mat-card>
+  <mat-card class="summary-card">
+    <h3>This Week</h3>
+    <p>{{ weeklyDeliveries }}</p>
+  </mat-card>
+  <mat-card class="summary-card">
+    <h3>Rating</h3>
+    <p>{{ rating }}/5</p>
+  </mat-card>
+  <mat-card class="summary-card">
+    <h3>On-Time Rate</h3>
+    <p>{{ onTimeRate }}%</p>
+  </mat-card>
+</div>
+
+<mat-tab-group>
+  <mat-tab label="New Requests ({{ newRequests.length }})">
+    <div *ngFor="let request of newRequests" class="request-card mat-elevation-z4">
+      <div class="header">
+        <h4>{{ request.ngoName }}</h4>
+        <span class="priority-badge">HIGH PRIORITY</span>
+      </div>
+
+      <p><strong>Pickup:</strong> {{ request.donorAddress }}, {{ request.donorCity }}</p>
+      <p><strong>Delivery:</strong> {{ request.ngoAddress }}, {{ request.ngoCity }}</p>
+
+      <p><strong>Items:</strong> {{ request.food }} | {{ request.type }} | {{ request.category }} ({{ request.quantity }})</p>
+
+      <p><strong>Distance:</strong> {{ request.distance }} km | <strong>Est. Time:</strong> {{ request.estimatedTime }}</p>
+
+      <button mat-raised-button color="primary" (click)="acceptOrder(request.fid)">
+        Accept Request
+      </button>
+    </div>
+  </mat-tab>
+  <mat-tab label="Active Deliveries ({{ activeDeliveries.length }})">
+    <p *ngIf="activeDeliveries.length === 0" class="no-active">No active deliveries.</p>
+    <mat-list>
+      <mat-list-item *ngFor="let order of activeDeliveries" class="active-delivery-item">
+        <strong>To:</strong> {{ order.deliveryLocation }} | 
+        <strong>Status:</strong> {{ order.status }}
+      </mat-list-item>
+    </mat-list>
+  </mat-tab>
+</mat-tab-group>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <img src="assets/gif/logo.png" class="logo" />
+      <p>Making food donation easier and more impactful. Help fight food waste while feeding those in need.</p>
+    </div>
+    <div>
+      <h3>Quick Links</h3>
+      <a (click)="navigateToHome()">Home</a><br>
+        <a (click)="navigateToAbout()">About Us</a><br>
+        <a (click)="navigateToWork()">How It Works</a><br>
+        <a (click)="navigateToContact()">Contact</a><br>
+    </div>
+    <div>
+      <h3>Support</h3>
+      <p>Help Center<br>+1 (234) 567-8900<br>Mon–Fri 9AM–6PM</p>
+    </div>
+  </div>
+  <p class="copy">© 2025 FoodShare. Made with ❤️ for a better world.</p>
+</footer>

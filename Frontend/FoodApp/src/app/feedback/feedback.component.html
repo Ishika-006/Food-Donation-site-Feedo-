@@ -1,0 +1,103 @@
+<div class="feedback-form">
+  <h2 class="title">Feedback Form</h2>
+  <p class="subtitle">Your experience matters to us</p>
+
+  <form [formGroup]="feedbackForm" (ngSubmit)="onSubmit()" novalidate>
+
+    <!-- Name -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Your Name</mat-label>
+      <input matInput formControlName="name" placeholder="Enter your name" />
+      <mat-error *ngIf="feedbackForm.get('name')?.invalid && feedbackForm.get('name')?.touched">
+        Name is required.
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Email -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Email Address</mat-label>
+      <input matInput type="email" formControlName="email" placeholder="Enter your email" />
+      <mat-error *ngIf="feedbackForm.get('email')?.invalid && feedbackForm.get('email')?.touched">
+        Please enter a valid email.
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Message -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Your Message</mat-label>
+      <textarea matInput formControlName="message" rows="3" placeholder="What would you like to share?"></textarea>
+      <mat-error *ngIf="feedbackForm.get('message')?.invalid && feedbackForm.get('message')?.touched">
+        Message is required.
+      </mat-error>
+    </mat-form-field>
+
+    <!-- User Type -->
+    <div class="form-section">
+      <label class="input-label">Who are you?</label>
+      <mat-radio-group formControlName="userType" class="user-type-group">
+        <mat-radio-button value="DONOR" class="user-type-button">
+          <mat-icon>person</mat-icon> Donor
+        </mat-radio-button>
+        <mat-radio-button value="NGO" class="user-type-button">
+          <mat-icon>apartment</mat-icon> NGO
+        </mat-radio-button>
+        <mat-radio-button value="DELIVERY" class="user-type-button">
+          <mat-icon>local_shipping</mat-icon> Delivery Partner
+        </mat-radio-button>
+      </mat-radio-group>
+      <mat-error *ngIf="feedbackForm.get('userType')?.invalid && feedbackForm.get('userType')?.touched">
+        Please select your role.
+      </mat-error>
+    </div>
+
+    <!-- Star Rating -->
+    <div class="form-section">
+      <label class="input-label">How was your overall experience?</label>
+      <div class="star-rating">
+        <mat-icon *ngFor="let star of stars; index as i"
+                  (click)="setRating(i + 1)"
+                  (mouseenter)="hoveredStar = i + 1"
+                  (mouseleave)="hoveredStar = 0"
+                  [class.filled]="(i + 1) <= (hoveredStar || feedbackForm.get('overallExperience')?.value)">
+          star
+        </mat-icon>
+      </div>
+      <mat-error *ngIf="feedbackForm.get('overallExperience')?.invalid && feedbackForm.get('overallExperience')?.touched">
+        Please rate your experience.
+      </mat-error>
+    </div>
+
+    <!-- AI Freshness Accuracy -->
+    <mat-form-field appearance="outline" class="full-width custom-select">
+      <mat-label>How accurate was the AI freshness verification?</mat-label>
+      <mat-select formControlName="aiFreshness" required>
+        <mat-option value="" disabled>Select an option</mat-option>
+        <mat-option value="Very Accurate">Very Accurate</mat-option>
+        <mat-option value="Accurate">Accurate</mat-option>
+        <mat-option value="Somewhat Accurate">Somewhat Accurate</mat-option>
+        <mat-option value="Inaccurate">Inaccurate</mat-option>
+      </mat-select>
+      <mat-error *ngIf="feedbackForm.get('aiFreshness')?.invalid && feedbackForm.get('aiFreshness')?.touched">
+        Please select an option.
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Detailed Feedback -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Detailed Feedback (Optional)</mat-label>
+      <textarea matInput formControlName="detailedFeedback" rows="4" placeholder="Share your experience, suggestions, or any issues you encountered..."></textarea>
+    </mat-form-field>
+
+    <!-- Suggestions -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Suggestions for Improvement</mat-label>
+      <textarea matInput formControlName="suggestions" rows="4" placeholder="How can we make the platform better?"></textarea>
+    </mat-form-field>
+
+    <!-- Submit Button -->
+    <button mat-raised-button color="primary" type="submit" [disabled]="feedbackForm.invalid || loading">
+      Submit Feedback
+    </button>
+
+  </form>
+</div>

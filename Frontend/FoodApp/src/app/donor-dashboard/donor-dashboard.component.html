@@ -1,0 +1,123 @@
+<mat-sidenav-container fullscreen>
+  <!-- Side Nav for Mobile/Tablets -->
+  <mat-sidenav #sidenav mode="over" class="mobile-sidenav">
+    <mat-nav-list>
+      <mat-list-item (click)="navigateToContri()">My Contribution</mat-list-item>
+ <!-- Always show Track Status item -->
+   <mat-list-item (click)="handleTrackClick()">Track Status</mat-list-item>
+      <mat-list-item (click) ="navigateToFeedback()">Feedback</mat-list-item>
+      <mat-list-item (click)="logout()">Logout</mat-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <!-- Main Content -->
+  <mat-toolbar class="toolbar">
+    <!-- Mobile Menu Button -->
+    <button mat-icon-button class="mobile-menu-btn" (click)="sidenav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <!-- Logo -->
+    <img src="assets/gif/logo.png" class="logo" />
+
+    <!-- Spacer for alignment -->
+    <span class="spacer"></span>
+
+    <!-- Desktop Navigation Buttons -->
+    <div class="nav-buttons">
+      <button mat-button (click)="navigateToContri()">My Contribution</button>
+
+      <!-- Always shown -->
+<button mat-button (click)="handleTrackClick()">Track Status</button>
+      <button mat-button (click)="navigateToFeedback()">Feedback</button>
+      <button mat-raised-button color="accent" (click)="logout()">Logout</button>
+    </div>
+  </mat-toolbar>
+
+  <!-- Main Dashboard -->
+  <div class="dashboard">
+    <h1>Welcome to Your <span class="highlight">Donor Dashboard</span></h1>
+    <p class="subtext">
+      Make a difference today. Choose to donate food to those in need or sell surplus food to reduce waste.
+    </p>
+
+    <!-- Summary Cards -->
+    <div class="summary-cards">
+      <mat-card class="card hover-card">
+        <strong>Total Donations</strong>
+        <h2>{{ totalDonations }}</h2>
+      </mat-card>
+      <mat-card class="card hover-card">
+        <strong>People Helped</strong>
+        <h2>{{ peopleHelped }}</h2>
+      </mat-card>
+      <mat-card class="card hover-card">
+        <strong>Food Saved</strong>
+        <h2>{{ foodSaved }}kg</h2>
+      </mat-card>
+      <mat-card class="card hover-card">
+        <strong>This Month</strong>
+        <h2>{{ thisMonth }}</h2>
+      </mat-card>
+    </div>
+
+    <!-- Donate / Sell Cards -->
+    <div class="actions">
+      <mat-card class="action-card donate hover-card">
+        <h2>Donate Food</h2>
+        <p>Share your excess food with those who need it most. Every donation makes a difference.</p>
+        <div class="badges">
+          <span class="badge">Free Pickup</span>
+          <span class="badge">Tax Benefits</span>
+          <span class="badge">Instant Impact</span>
+        </div>
+        <button mat-raised-button color="accent" (click)="navigateToDonate()">Start Donating</button>
+      </mat-card>
+
+      <mat-card class="action-card sell hover-card">
+        <h2>Sell Surplus</h2>
+        <p>Turn your excess food into income while preventing waste. Set your own prices.</p>
+        <div class="badges">
+          <span class="badge">Fair Pricing</span>
+          <span class="badge">Quick Sales</span>
+          <span class="badge">Zero Waste</span>
+        </div>
+        <button mat-raised-button color="accent" (click)="navigateToSell()">Start Selling</button>
+      </mat-card>
+    </div>
+
+    <!-- Recent Activity -->
+    <div class="recent-box">
+      <h2>Recent Activity</h2>
+      <mat-list>
+        <mat-list-item *ngFor="let donation of recentDonations">
+          🍽️ Donated {{ donation.food }} ({{ donation.quantity }}) —
+          {{ donation.date | date:'short' }} —
+          <strong>{{ donation.name }}</strong>
+        </mat-list-item>
+      </mat-list>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-grid">
+        <div>
+          <img src="assets/gif/logo.png" class="logo" />
+          <p>Making food donation easier and more impactful. Help fight food waste while feeding those in need.</p>
+        </div>
+        <div>
+          <h3>Quick Links</h3>
+          <a (click)="navigateToHome()">Home</a><br>
+            <a (click)="navigateToAbout()">About Us</a><br>
+            <a (click)="navigateToWork()">How It Works</a><br>
+            <a (click)="navigateToContact()">Contact</a><br>
+        </div>
+        <div>
+          <h3>Support</h3>
+          <p>Help Center<br>+1 (234) 567-8900<br>Mon–Fri 9AM–6PM</p>
+        </div>
+      </div>
+      <p class="copy">© 2025 FoodShare. Made with ❤️ for a better world.</p>
+    </footer>
+  </div>
+</mat-sidenav-container>

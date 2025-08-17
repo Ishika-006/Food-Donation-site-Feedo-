@@ -1,0 +1,5 @@
+package com.ishika.foodwaste.jpa.entity;
+
+public class Donor {
+
+}

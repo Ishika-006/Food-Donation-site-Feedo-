@@ -1,0 +1,5 @@
+package com.ishika.foodwaste.web.interfaces;
+
+public interface NGOFacade {
+
+}

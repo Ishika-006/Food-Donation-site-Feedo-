@@ -1,0 +1,318 @@
+<!-- Top Navbar -->
+<mat-toolbar class="toolbar">
+  <img src="assets/gif/logo.png" class="logo" />
+  <span class="spacer"></span>
+  <button mat-button>About Us</button>
+  <button mat-button>Contact Us</button>
+  <button mat-button>Feedback</button>
+  <button mat-raised-button color="accent" (click)="logout()">Logout</button>
+</mat-toolbar>
+
+   <!-- herosection -->
+<div class="dashboard-container">
+  <h2>Admin Dashboard</h2>
+  <p>Monitor and manage all food donation activities</p>
+
+  <mat-tab-group>
+    <mat-tab label="Overview">
+      <div class="stats-grid">
+        <mat-card class="stat-card gradient-card purple">
+          <mat-card-title>Total Donations</mat-card-title>
+          <mat-card-content>
+            <h2>{{ stats.totalDonations }}</h2>
+            <p class="green">+15.2% from last month</p>
+          </mat-card-content>
+        </mat-card>
+
+        <mat-card class="stat-card gradient-card pink">
+          <mat-card-title>Food Saved</mat-card-title>
+          <mat-card-content>
+            <h2>{{ stats.foodSaved }} kg</h2>
+            <p>Total food rescued from waste</p>
+          </mat-card-content>
+        </mat-card>
+
+        <mat-card class="stat-card gradient-card blue">
+          <mat-card-title>Active Users</mat-card-title>
+          <mat-card-content>
+            <h2>{{ stats.activeUsers }}</h2>
+            <p>{{ stats.donors }} donors, {{ stats.ngos }} NGOs</p>
+          </mat-card-content>
+        </mat-card>
+
+        <mat-card class="stat-card gradient-card green">
+          <mat-card-title>Delivery Fleet</mat-card-title>
+          <mat-card-content>
+            <h2>{{ stats.deliveryFleet }}</h2>
+            <p>{{ stats.availableDeliveryFleet }} available, {{ stats.busyDeliveryFleet }} busy</p>
+          </mat-card-content>
+        </mat-card>
+
+        <mat-card class="stat-card gradient-card orange pending">
+          <mat-card-title>Pending Donations</mat-card-title>
+          <mat-card-content>
+            <h2>{{ stats.pendingDonations }}</h2>
+            <p>Waiting for approval</p>
+          </mat-card-content>
+        </mat-card>
+
+        <mat-card class="stat-card gradient-card teal accepted">
+          <mat-card-title>Accepted Donations</mat-card-title>
+          <mat-card-content>
+            <h2>{{ stats.acceptedDonations }}</h2>
+            <p>Ready for pickup</p>
+          </mat-card-content>
+        </mat-card>
+
+        <mat-card class="stat-card gradient-card indigo delivered">
+          <mat-card-title>Delivered Today</mat-card-title>
+          <mat-card-content>
+            <h2>{{ stats.deliveredToday }}</h2>
+            <p>Successfully completed</p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </mat-tab>
+    <!-- Other tabs remain the same as you provided -->
+ 
+
+      
+
+      <!-- Future: Recent Activity and Top Donors (Optional) -->
+    <mat-tab label="Donations"> <div class="donation-management">
+      <h2>Donation Management</h2>
+      <p>View and manage all food donation requests</p>
+  
+      <div class="donation-controls">
+        <mat-form-field appearance="outline" class="search-box">
+          <mat-label>Search donations...</mat-label>
+          <input matInput [(ngModel)]="searchQuery" placeholder="Search donations..." />
+        </mat-form-field>
+  
+        <button mat-stroked-button color="primary" (click)="filterDonations()">
+          <mat-icon>filter_list</mat-icon> Filter
+        </button>
+  
+        <button mat-stroked-button color="primary" (click)="exportDonations()">
+          <mat-icon>file_download</mat-icon> Export
+        </button>
+  
+        <button mat-raised-button color="primary" (click)="openAddDonationDialog()">
+          <mat-icon>add</mat-icon> Add Donation
+        </button>
+      </div>
+  
+      <div class="donation-table" *ngIf="donations.length > 0">
+        <table mat-table [dataSource]="donations" class="mat-elevation-z2" multiTemplateDataRows>
+      
+          <!-- ID -->
+          <ng-container matColumnDef="fid">
+            <th mat-header-cell *matHeaderCellDef> ID </th>
+            <td mat-cell *matCellDef="let donation"> {{ donation.fid }} </td>
+          </ng-container>
+      
+          <!-- Name -->
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Donor Name </th>
+            <td mat-cell *matCellDef="let donation"> {{ donation.name }} </td>
+          </ng-container>
+      
+          <!-- Food -->
+          <ng-container matColumnDef="food">
+            <th mat-header-cell *matHeaderCellDef> Food </th>
+            <td mat-cell *matCellDef="let donation"> {{ donation.food }} </td>
+          </ng-container>
+      
+          <!-- Quantity -->
+          <ng-container matColumnDef="quantity">
+            <th mat-header-cell *matHeaderCellDef> Quantity </th>
+            <td mat-cell *matCellDef="let donation"> {{ donation.quantity }} </td>
+          </ng-container>
+      
+          <!-- Location -->
+          <ng-container matColumnDef="location">
+            <th mat-header-cell *matHeaderCellDef> Location </th>
+            <td mat-cell *matCellDef="let donation"> {{ donation.location }} </td>
+          </ng-container>
+      
+          <!-- Phone -->
+          <ng-container matColumnDef="phoneno">
+            <th mat-header-cell *matHeaderCellDef> Phone </th>
+            <td mat-cell *matCellDef="let donation"> {{ donation.phoneno }} </td>
+          </ng-container>
+      
+          <!-- Status -->
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef> Status </th>
+            <td mat-cell *matCellDef="let donation"> {{ donation.status }} </td>
+          </ng-container>
+      
+          <!-- Date -->
+          <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef> Date </th>
+            <td mat-cell *matCellDef="let donation"> {{ donation.date | date: 'short' }} </td>
+          </ng-container>
+      
+          <tr mat-header-row *matHeaderRowDef="donationColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: donationColumns;"></tr>
+        </table>
+      </div>
+      
+      <p *ngIf="donations.length === 0" class="empty-message">No donations found.</p>
+      
+    </div></mat-tab>
+    <mat-tab label="Delivery Persons">
+      <div class="delivery-persons">
+        <h2>Delivery Fleet</h2>
+        <p>Search and manage delivery personnel</p>
+    
+        <div class="delivery-controls">
+          <mat-form-field appearance="outline" class="search-box">
+            <mat-label>Search delivery persons...</mat-label>
+            <input matInput [(ngModel)]="searchQuery" placeholder="Enter name or keyword" />
+          </mat-form-field>
+    
+          <button mat-stroked-button color="primary" (click)="search()">
+            <mat-icon>search</mat-icon> Search
+          </button>
+        </div>
+    
+        <div class="delivery-table" *ngIf="deliveryPersons.length > 0">
+          <table mat-table [dataSource]="deliveryPersons" class="mat-elevation-z2">
+    
+            <!-- ID Column -->
+            <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef> ID </th>
+              <td mat-cell *matCellDef="let person"> {{ person.id }} </td>
+            </ng-container>
+    
+            <!-- Name Column -->
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef> Name </th>
+              <td mat-cell *matCellDef="let person"> {{ person.name }} </td>
+            </ng-container>
+    
+            <!-- Phone Column -->
+            <ng-container matColumnDef="phone">
+              <th mat-header-cell *matHeaderCellDef> Phone </th>
+              <td mat-cell *matCellDef="let person"> {{ person.phone }} </td>
+            </ng-container>
+    
+            <!-- Status Column -->
+            <ng-container matColumnDef="status">
+              <th mat-header-cell *matHeaderCellDef> Status </th>
+              <td mat-cell *matCellDef="let person">
+                <span [ngClass]="{ 'available': person.isAvailable, 'busy': !person.isAvailable }">
+                  {{ person.isAvailable ? 'Available' : 'Busy' }}
+                </span>
+              </td>
+            </ng-container>
+    
+            <!-- Table Rows -->
+            <tr mat-header-row *matHeaderRowDef="deliveryPersonColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: deliveryPersonColumns;"></tr>
+          </table>
+        </div>
+    
+        <p *ngIf="deliveryPersons.length === 0" class="empty-message">No delivery persons found.</p>
+      </div>
+    </mat-tab>
+    
+    
+    <mat-tab label="Reports">
+      <div class="reports-container">
+        <h2>Reports & Analytics</h2>
+        <p>Download reports and view visual analytics</p>
+      
+        <div class="reports-grid">
+          <!-- Monthly Summary -->
+          <div class="report-card">
+            <i class="report-icon">📄</i>
+            <h3>Monthly Summary</h3>
+            <button (click)="downloadPDF()">⬇ Download PDF</button>
+          </div>
+      
+          <!-- NGO Performance -->
+          <div class="report-card">
+            <i class="report-icon">📊</i>
+            <h3>NGO Performance</h3>
+            <button  (click)="downloadExcel()">⬇ Download Excel</button>
+          </div>
+      
+          <!-- Delivery Efficiency -->
+          <div class="report-card">
+            <i class="report-icon">📈</i>
+            <h3>Delivery Efficiency</h3>
+            <button (click)="downloadCSV()">⬇ Download CSV</button>
+          </div>
+        </div>
+      
+        <button (click)="showAnalytics = true" *ngIf="!showAnalytics" style="margin-top: 20px;">
+          📈 View Analytics Dashboard
+        </button>
+      
+        <app-analytics-dashboard *ngIf="showAnalytics"></app-analytics-dashboard>
+      
+        <button (click)="showAnalytics = false" *ngIf="showAnalytics" style="margin-top: 20px;">
+          Close Analytics Dashboard
+        </button>
+      
+        <p class="note">Advanced analytics with charts (using Chart.js or Google Charts) would be implemented here.</p>
+      </div>      
+    </mat-tab>
+  </mat-tab-group>
+</div>
+
+
+<div class="activity-topdonors-container">
+  <!-- Recent Activity -->
+  <div class="recent-activity">
+    <h3>Recent Activity</h3>
+    <p class="section-subtitle">Latest updates from your platform</p>
+    <div class="activity-item" *ngFor="let activity of recentActivities">
+      <span class="dot green-dot"></span>
+      <div class="activity-text">
+        <strong>{{ activity.name }}</strong> {{ activity.action }} 
+        <span *ngIf="activity.target"><strong>{{ activity.target }}</strong></span>
+        <span class="activity-time">{{ activity.time }}</span>
+        <span class="activity-status" [ngClass]="activity.status">{{ activity.status }}</span>
+      </div>
+    </div>
+    
+  </div>
+
+ <!-- Top Donors -->
+<div class="top-donors">
+  <h3>Top Donors This Month</h3>
+  <p class="section-subtitle">Most active contributors</p>
+  <div class="donor-card" *ngFor="let donor of topDonors; index as i">
+    <div class="donor-rank">#{{ i + 1 }}</div>
+    <div class="donor-details">
+      <strong>{{ donor.name }}</strong>
+      <p>{{ donor.donations }} donations • {{ donor.foodSaved }} kg saved</p>
+    </div>
+  </div>
+</div>
+
+
+<!-- Footer -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <img src="assets/gif/logo.png" class="logo" />
+      <p>Making food donation easier and more impactful. Help fight food waste while feeding those in need.</p>
+    </div>
+    <div>
+      <h3>Quick Links</h3>
+      <a (click)="navigateToHome()">Home</a><br>
+        <a (click)="navigateToAbout()">About Us</a><br>
+        <a (click)="navigateToWork()">How It Works</a><br>
+        <a (click)="navigateToContact()">Contact</a><br>
+    </div>
+    <div>
+      <h3>Support</h3>
+      <p>Help Center<br>+1 (234) 567-8900<br>Mon–Fri 9AM–6PM</p>
+    </div>
+  </div>
+  <p class="copy">© 2025 FoodShare. Made with ❤️ for a better world.</p>
+</footer>

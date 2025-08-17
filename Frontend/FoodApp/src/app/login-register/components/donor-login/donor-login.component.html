@@ -1,0 +1,88 @@
+<div class="login-container">
+  <div class="login-overlay"></div>
+  <div class="login-form">
+    <h2 class="login-title">
+      {{ isForgotPasswordMode 
+          ? 'Reset Password' 
+          : (isLoginMode ? 'Donor Login' : 'Donor Registration') }}
+    </h2>
+
+    <form (ngSubmit)="onSubmit()" #donorForm="ngForm" novalidate>
+
+      <!-- LOGIN / REGISTER FORM -->
+      <ng-container *ngIf="!isForgotPasswordMode">
+
+        <!-- Login Form -->
+        <ng-container *ngIf="isLoginMode">
+          <div class="mat-form-field">
+            <input type="email" name="loginEmail" [(ngModel)]="loginData.email" placeholder="Email" required />
+          </div>
+          <div class="mat-form-field">
+            <input type="password" name="loginPassword" [(ngModel)]="loginData.password" placeholder="Password" required />
+          </div>
+        </ng-container>
+
+        <!-- Register Form -->
+        <ng-container *ngIf="!isLoginMode">
+          <div class="mat-form-field">
+            <input type="text" name="name" [(ngModel)]="registerData.name" placeholder="Full Name" required />
+          </div>
+          <div class="mat-form-field">
+            <input type="email" name="email" [(ngModel)]="registerData.email" placeholder="Email" required />
+          </div>
+          <div class="mat-form-field">
+            <input type="password" name="password" [(ngModel)]="registerData.password" placeholder="Password" required />
+          </div>
+          <div class="mat-form-field">
+            <input type="text" name="contact" [(ngModel)]="registerData.contact" placeholder="Contact Number" required />
+          </div>
+          <div class="mat-form-field">
+            <input type="text" name="address" [(ngModel)]="registerData.address" placeholder="Address" required />
+          </div>
+          <div class="mat-form-field">
+            <select name="donorType" [(ngModel)]="registerData.donorType" required>
+              <option value="" disabled selected>Select Donor Type</option>
+              <option value="Individual">Individual</option>
+              <option value="Organization">Organization</option>
+            </select>
+          </div>
+        </ng-container>
+
+        <!-- Error Message -->
+        <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+        <!-- Submit Button -->
+        <div class="mat-form-field">
+          <button type="submit" class="login-btn">{{ isLoginMode ? 'Login' : 'Register' }}</button>
+        </div>
+
+        <!-- Footer Buttons -->
+        <div class="login-footer">
+          <button type="button" class="login-btn" (click)="toggleMode()">Switch to {{ isLoginMode ? 'Register' : 'Login' }}</button>
+          <button type="button" class="link-btn" (click)="showForgotPassword()">Forgot Password?</button>
+        </div>
+      </ng-container>
+
+      <!-- FORGOT PASSWORD FORM -->
+      <ng-container *ngIf="isForgotPasswordMode">
+        <div class="mat-form-field">
+          <input type="email" name="forgotEmail" [(ngModel)]="forgotEmail" placeholder="Enter your registered email" required />
+        </div>
+        <div class="mat-form-field" *ngIf="emailVerified">
+          <input type="password" name="newPassword" [(ngModel)]="newPassword" placeholder="Enter new password" required />
+        </div>
+
+        <div class="mat-form-field">
+          <button type="button" class="login-btn" (click)="handleForgotPassword()">
+            {{ emailVerified ? 'Update Password' : 'Verify Email' }}
+          </button>
+        </div>
+
+        <div class="login-footer">
+          <button type="button" class="login-btn" (click)="cancelForgotPassword()">Back to {{ isLoginMode ? 'Login' : 'Register' }}</button>
+        </div>
+      </ng-container>
+
+    </form>
+  </div>
+</div>

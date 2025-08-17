@@ -1,0 +1,113 @@
+body {
+  background: #fef8ff;
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.toolbar {
+  background: linear-gradient(90deg, #eac6f9, #f7d6ef);
+  color: #333;
+  padding: 0 1rem;
+}
+
+@keyframes logoGlow {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0px rgba(255, 255, 255, 0);
+  }
+  50% {
+    transform: scale(1.08);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0px rgba(255, 255, 255, 0);
+  }
+}
+
+.logo {
+  height: 70px;
+  width: auto;
+  margin-top: -10px;
+  border-radius: 8px;
+  animation: logoGlow 2.5s ease-in-out infinite;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+
+.dashboard-summary {
+  display: flex;
+  justify-content: space-between;
+  margin: 30px 10px 40px; /* More top and bottom margin for spacing */
+  gap: 20px; /* Adds consistent gap between cards */
+}
+
+.summary-card {
+  flex: 1;
+  margin: 0; /* margin handled by gap */
+  padding: 25px;
+  text-align: center;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); /* subtle shadow for pop */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.summary-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+}
+
+mat-tab-group {
+  margin: 0 10px 50px; /* spacing below and side spacing */
+}
+
+.request-card {
+  border: 1px solid #ccc;
+  border-left: 5px solid #4caf50;
+  border-radius: 12px;
+  padding: 20px;
+  margin: 20px 0;
+  background: #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.request-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+}
+
+
+
+
+footer {
+  margin-top: 3rem;
+  padding: 2rem;
+  background: #f4dcf8;
+  color: #333;
+}
+
+.footer-grid {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.copy {
+  text-align: center;
+  margin-top: 1rem;
+  color: #666;
+}
+
